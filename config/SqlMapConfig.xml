@@ -26,5 +26,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mapper/helpdao.xml" />
 		<mapper resource="mapper/helpdetaildao.xml" />
 		<mapper resource="mapper/logindao.xml" />
+		<mapper resource="mapper/registerdao.xml" />
 	</mappers>
 </configuration>

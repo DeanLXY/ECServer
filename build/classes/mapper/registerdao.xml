@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace :命名空间需要 接口的全限定名 #{version} 占位符 , version随意些 -->
+<mapper namespace="zz.itcast.ecserver.dao.IUserRegisterDao">
+	<insert id="registerNewUser" parameterType="string">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+			select LAST_INSERT_ID()
+		</selectKey>
+		insert into user(username,password,level) values(#{0},#{1},'普通用户')
+	</insert>
+
+
+	<select id="getUserIdByUserName" parameterType="string" resultType="int">
+		select id userId from user where username= #{username}
+	</select>
+	
+	<select id="getUsersByUserName" parameterType="string" resultType="userinfo">
+		select id userId,bonus,level from user where username=#{username}
+	</select>
+</mapper>
