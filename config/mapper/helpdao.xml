@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace :命名空间需要 接口的全限定名
+ #{version} 占位符 , version随意些
+ -->
+<mapper namespace="zz.itcast.ecserver.dao.IHelpListDao">
+	
+	<select id="getHelpList" parameterType="int" resultType="zz.itcast.ecserver.po.Help">
+		SELECT * FROM HELP  WHERE VERSION > #{version} AND state = 1
+	</select>
+	<select id="getLastVersion"  resultType="int">
+		SELECT VERSION FROM HELP ORDER BY VERSION DESC  LIMIT 1
+	</select>
+</mapper>
