@@ -31,5 +31,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mapper/favoritesdao.xml" />
 		<mapper resource="mapper/IProductDao.xml" />
 		<mapper resource="mapper/fadebackdao.xml" />
+		<mapper resource="mapper/hometopicdao.xml" />
 	</mappers>
 </configuration>
