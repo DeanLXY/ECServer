@@ -10,8 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.session.SqlSession;
+
+import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 
 import zz.itcast.ecserver.dao.IFavoritesDao;
 import zz.itcast.ecserver.po.Product;
@@ -52,7 +53,8 @@ public class FavoritesServlet extends BaseServlet {
 		data.put("productList", favoritesList);
 		data.put("listCount", favoritesList.size());
 		
-		CommonUtil.renderJson(resp, data);
+//		CommonUtil.renderJson(resp, data);
+		CommonUtil.renderJsonWithFilter(resp, data, new SimplePropertyPreFilter(Product.class, "id","name","pic","price","marketprice","commentcount","isgift"));
 		
 		
 		
