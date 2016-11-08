@@ -9,9 +9,9 @@ package zz.itcast.ecserver.po;
 public class Product {
 	private int id;
 	private String name;
-	private String pic;
 	private float price;
 	private float marketprice;
+	private String pic;
 	private int commentcount;
 	private boolean isgift;
 

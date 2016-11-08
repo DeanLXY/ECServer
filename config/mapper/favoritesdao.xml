@@ -9,5 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT id,NAME,price,marketprice,pic,commentcount,isgift FROM favorites WHERE userid = #{0} LIMIT #{1},#{2}
 
 	</select>
+	
+	<insert id="addNewFavorites" parameterType="map" >
+		<selectKey keyProperty="id" order="AFTER" resultType="int">
+			select LAST_INSERT_ID()
+		</selectKey>
+		
+		INSERT INTO favorites
+		(userid,productid,NAME,price,marketprice,pic,commentcount,isgift) 
+		VALUES( #{userid} 
+		,#{product.id} , #{product.name},#{product.price},#{product.marketprice},#{product.pic},#{product.commentcount}, #{product.isgift})
+	</insert>
+	
+	<select id="getFavoritesById" parameterType="int" resultType="product">
+		SELECT * FROM favorites WHERE productid = #{1} and userid=#{0}
+	</select>
 
 </mapper>
