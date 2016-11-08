@@ -42,4 +42,10 @@ public class DefaultUtils {
 		}
 		return Integer.parseInt(str);
 	}
+
+	
+	public static String checkNull(String contentStr, String defalutStr) {
+		
+		return StringUtils.isEmpty(contentStr)? defalutStr : contentStr;
+	}
 }
