@@ -10,5 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getProductById" parameterType="int" resultType="product">
 		SELECT id,NAME,price,marketprice,pic,commentcount,isgift FROM product WHERE id=#{id}
 	</select>
+	<select id="getProductList"  resultType="product">
+		SELECT id,NAME,price,marketprice,pic,commentcount,isgift,sales FROM product WHERE cid=#{0}  ORDER BY #{3} LIMIT #{1},#{2}
+	</select>
  
 </mapper>

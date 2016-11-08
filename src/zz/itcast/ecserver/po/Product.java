@@ -1,7 +1,7 @@
 package zz.itcast.ecserver.po;
 
 /**
- * 商品信息 {@link 收藏}
+ * 商品信息 {@link 收藏} {@link 商品列表}
  * 
  * @author wangx
  *
@@ -14,6 +14,18 @@ public class Product {
 	private String pic;
 	private int commentcount;
 	private boolean isgift;
+	
+	private int sales;
+	
+	
+
+	public int getSales() {
+		return sales;
+	}
+
+	public void setSales(int sales) {
+		this.sales = sales;
+	}
 
 	public int getId() {
 		return id;
