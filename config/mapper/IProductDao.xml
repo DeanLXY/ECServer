@@ -2,16 +2,48 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- namespace :命名空间需要 接口的全限定名
- #{version} 占位符 , version随意些
- -->
+<!-- namespace :命名空间需要 接口的全限定名 #{version} 占位符 , version随意些 -->
 <mapper namespace="zz.itcast.ecserver.dao.IProductDao">
-	
+
 	<select id="getProductById" parameterType="int" resultType="product">
-		SELECT id,NAME,price,marketprice,pic,commentcount,isgift FROM product WHERE id=#{id}
+		SELECT id,NAME,price,marketprice,pic,commentcount,isgift FROM product
+		WHERE id=#{id}
 	</select>
-	<select id="getProductList"  resultType="product">
-		SELECT id,NAME,price,marketprice,pic,commentcount,isgift,sales FROM product WHERE cid=#{0}  ORDER BY #{3} LIMIT #{1},#{2}
+	<select id="getProductList" resultType="product">
+		SELECT
+		id,NAME,price,marketprice,pic,commentcount,isgift,sales FROM product
+		WHERE cid=#{0} ORDER BY #{3} LIMIT #{1},#{2}
 	</select>
- 
+
+	<select id="getProductNewList" resultType="product">
+		SELECT
+		id,NAME,price,marketprice,pic,commentcount,isgift,sales,href,outoftime
+		FROM product where outoftime > #{3} ORDER BY #{2} LIMIT #{0},#{1}
+	</select>
+
+	<select id="getProductCount" parameterType="int" resultType="int">
+		select count(*) from product where cid = #{cid}
+	</select>
+
+	<select id="getProductNewCount" parameterType="long" resultType="int">
+		select count(*) from product where href is not null and outoftime > #{0}
+	</select>
+
+	<insert id="insertNewProduct" parameterType="product">
+
+		INSERT INTO
+		product(NAME,price,marketprice,pic,commentcount,isgift,cid,sales)
+		VALUES(#{name},#{price},#{marketprice}
+		,#{pic},#{commentcount},#{isgift},#{cid},#{sales})
+	</insert>
+
+	<insert id="insertNewProductNews" parameterType="product">
+
+		INSERT INTO
+		product(NAME,price,marketprice,pic,commentcount,isgift,cid,sales,outoftime,href)
+		VALUES(#{name},#{price},#{marketprice}
+		,#{pic},#{commentcount},#{isgift},#{cid},#{sales},#{outoftime},#{href})
+	</insert>
+
+
 </mapper>

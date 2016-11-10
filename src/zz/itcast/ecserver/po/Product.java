@@ -16,8 +16,36 @@ public class Product {
 	private boolean isgift;
 	
 	private int sales;
+	private int cid;
+	//热门商品过期时间
+	private long outoftime;
+	// 商品网页链接
+	private String href;
 	
-	
+
+	public String getHref() {
+		return href;
+	}
+
+	public void setHref(String href) {
+		this.href = href;
+	}
+
+	public long getOutoftime() {
+		return outoftime;
+	}
+
+	public void setOutoftime(long outoftime) {
+		this.outoftime = outoftime;
+	}
+
+	public int getCid() {
+		return cid;
+	}
+
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
 
 	public int getSales() {
 		return sales;

@@ -26,4 +26,39 @@ public interface IProductDao {
 	 * @return
 	 */
 	List<Product> getProductList(int cid,int page,int pageNum,String order);
+	
+	/**
+	 * 获取新品上家列表
+	 * @param cid
+	 * @param page
+	 * @param pageNum
+	 * @param order
+	 * @return
+	 */
+	List<Product> getProductNewList(int page,int pageNum,String order,long systemtime);
+	
+	
+	/**
+	 * 根据分类获取 商品数量
+	 * @param cid
+	 * @return
+	 */
+	int getProductCount(int cid);
+	
+	/**
+	 * 获取上架新品数量
+	 * @return
+	 */
+	int getProductNewCount(long systemtime);
+	
+	/**
+	 * 加入新的商品 测试用
+	 * @param product
+	 */
+	void insertNewProduct(Product product);
+	
+	/**
+	 * 添加新上架商品
+	 */
+	void insertNewProductNews(Product product);
 }

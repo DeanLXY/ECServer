@@ -32,6 +32,12 @@ public class CategoryServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String parentIdStr = req.getParameter(PARENT_ID);
 		String versionStr = req.getParameter(VERSION);
+	
+		boolean b = DefaultUtils.checkNull(resp, parentIdStr,"parentId不能为空,如果为空,默认请求一级列表");
+		if ( b) {
+			return;
+		}
+		
 		
 		int parentId = DefaultUtils.checkNull(parentIdStr, 0);
 		int version = DefaultUtils.checkNull(versionStr, 0);
