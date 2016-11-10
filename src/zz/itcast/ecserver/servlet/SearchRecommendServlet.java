@@ -12,32 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
-import zz.itcast.ecserver.dao.IHomeTopicDao;
-import zz.itcast.ecserver.po.HomeTopic;
+import zz.itcast.ecserver.dao.ISearchRecommendDao;
 import zz.itcast.ecserver.utils.CommonUtil;
 
 /**
- * 首页轮转大图
+ * 热门搜索
  * @author wangx
  *
  */
-@WebServlet("/home")
-public class HomeTopicServlet extends BaseServlet {
+@WebServlet("/search/recommend")
+public class SearchRecommendServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		IHomeTopicDao homeTopicDao = sqlSession.getMapper(IHomeTopicDao.class);
-		List<HomeTopic> homeTopicList = homeTopicDao.getHomeTopicList();
+		ISearchRecommendDao recommendDao = sqlSession.getMapper(ISearchRecommendDao.class);
+		List<String> recommendList = recommendDao.getSearchRecommendList();
 		sqlSession.close();
 		
-		Map<String,Object> data = new HashMap<String,Object>();
-		data.put("response", "home");
-		data.put("homeTopic", homeTopicList);
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("response", "searchrecommend");
+		data.put("searchKeywords", recommendList);
 		
 		CommonUtil.renderJson(resp, data);
 	}
-	
 }

@@ -6,6 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  #{version} 占位符 , version随意些
  -->
 <mapper namespace="zz.itcast.ecserver.dao.IUserLoginDao">
+<!--如果是多个参数 参数类型相同  ,  直接写相同类型即可
+
+#{0}  dao方法中的第一个参数
+#{1} dao方法中的第二个参数
+  -->
 	<select id="login" parameterType="string" resultType="userinfo">
 			SELECT id userId,bonus,level FROM USER WHERE username= #{0} AND PASSWORD = #{1}
 	</select>

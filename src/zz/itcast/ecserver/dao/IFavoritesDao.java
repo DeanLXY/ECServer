@@ -25,10 +25,11 @@ public interface IFavoritesDao {
 	
 	/**
 	 * 添加新的收藏
-	 * @param product
+	 * @param 命名
+	 * @param product  
 	 * @return
 	 */
-	int addNewFavorites(@Param("userid")int userid ,@Param("product") Product product);
+	void addNewFavorites(@Param("userid")int userid ,@Param("product") Product product);
 	
 	
 	/**

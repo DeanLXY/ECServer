@@ -10,10 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 	
+	<!-- 
+	如果dao方法的参数类型不同 , 一个是基本类型 一个是  自定义类型  map
+	如果是  基本类型  @param("userid") 命名  #{userid}
+	如果是  自定义类型 @param("product")  product.id  product.name
+	 -->
 	<insert id="addNewFavorites" parameterType="map" >
-		<selectKey keyProperty="id" order="AFTER" resultType="int">
-			select LAST_INSERT_ID()
-		</selectKey>
 		
 		INSERT INTO favorites
 		(userid,productid,NAME,price,marketprice,pic,commentcount,isgift) 

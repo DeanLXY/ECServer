@@ -17,7 +17,7 @@ import zz.itcast.ecserver.po.UserInfo;
 import zz.itcast.ecserver.utils.CommonUtil;
 import zz.itcast.ecserver.utils.DefaultUtils;
 
-@WebServlet("/login")
+@WebServlet(value = "/login")
 public class LogInServlet extends BaseServlet {
 	private static final String PASSWORD = "password";
 	private static final String USERNAME = "username";
