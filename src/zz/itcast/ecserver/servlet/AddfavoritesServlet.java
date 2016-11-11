@@ -38,7 +38,7 @@ public class AddfavoritesServlet extends BaseServlet {
 		}
 
 		int userId = DefaultUtils.checkNull(userIdStr, 0);
-		int productId = DefaultUtils.checkNull(productIdStr, 0);
+		String productId = DefaultUtils.checkNull(productIdStr, "");
 
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		IProductDao productDao = sqlSession.getMapper(IProductDao.class);

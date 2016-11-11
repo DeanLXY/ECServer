@@ -5,13 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- namespace :命名空间需要 接口的全限定名 #{version} 占位符 , version随意些 -->
 <mapper namespace="zz.itcast.ecserver.dao.IProductDao">
 
-	<select id="getProductById" parameterType="int" resultType="product">
-		SELECT id,NAME,price,marketprice,pic,commentcount,isgift FROM product
-		WHERE id=#{id}
+	<select id="getProductById" parameterType="string" resultType="product">
+		SELECT id,product_id productId,NAME,price,marketprice,pic,commentcount,isgift,cid,outoftime,brand_id brandId,sales FROM product
+		WHERE product_id=#{product_id}
 	</select>
 	<select id="getProductList" resultType="product">
 		SELECT
-		id,NAME,price,marketprice,pic,commentcount,isgift,sales FROM product
+		id,product_id productId,NAME,price,marketprice,pic,commentcount,isgift,sales FROM product
 		WHERE cid=#{0} ORDER BY #{3} LIMIT #{1},#{2}
 	</select>
 

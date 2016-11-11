@@ -16,7 +16,7 @@ public interface IProductDao {
 	 * @param productId
 	 * @return
 	 */
-	Product getProductById(int productId);
+	Product getProductById(String productId);
 	
 	/**
 	 * 获取商品列表

@@ -38,5 +38,5 @@ public interface IFavoritesDao {
 	 * @param productId 
 	 * @return
 	 */
-	Product getFavoritesById(int userid, int productId);
+	Product getFavoritesById(int userid, String productId);
 }
