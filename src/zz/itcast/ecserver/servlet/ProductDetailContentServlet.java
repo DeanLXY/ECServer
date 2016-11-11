@@ -20,12 +20,12 @@ import zz.itcast.ecserver.utils.CommonUtil;
 import zz.itcast.ecserver.utils.DefaultUtils;
 
 /**
- * 商品详情servlet
+ * 商品描述servlet
  * @author wangx
  *
  */
-@WebServlet("/product")
-public class ProductDetailServlet extends BaseServlet {
+@WebServlet("/product/description")
+public class ProductDetailContentServlet extends BaseServlet {
 
 	private static final String P_ID = "pId";
 
@@ -39,21 +39,12 @@ public class ProductDetailServlet extends BaseServlet {
 		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		IProductDao productDao = sqlSession.getMapper(IProductDao.class);
-		Product product = productDao.getProductById(pIdStr);
-		List<String> productContent = productDao.getProductContentById(pIdStr);
-		List<ProductPic> productImgs = productDao.getProductImgsById(pIdStr);
-		List<ProductPic> productBigImgs = productDao.getProductBigImgsById(pIdStr);
+		String productContent = productDao.getProductContentById(pIdStr);
 		sqlSession.close();
 		
 		Map<String, Object> data = new HashMap<String, Object>();
-		List<Object> dataObj = new ArrayList<Object>();
-		Map<String,Object> imgData = new HashMap<String ,Object>();
-		imgData.put("pics", productImgs);
-		imgData.put("bigpic", productBigImgs);
-		dataObj.add(imgData);
-		dataObj.add(product);
-		data.put("response", "product");
-		data.put("product", dataObj);
+		data.put("response", "product_description");
+		data.put("productdesc", productContent);
 		CommonUtil.renderJson(resp, data);
 		
 	}

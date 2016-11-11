@@ -52,6 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getProductBigImgsById" parameterType="string" resultType="ProductPic">
 		SELECT product_id productId,alt,url,width,height FROM product_big_pic where product_id = #{product_id}
 	</select>
+	<select id="getProductContentById" parameterType="string" resultType="string">
+		SELECT content FROM product_detail_content where product_id = #{product_id}
+	</select>
 
 	<insert id="insertNewProduct" parameterType="product">
 

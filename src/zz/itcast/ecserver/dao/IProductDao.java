@@ -104,6 +104,12 @@ public interface IProductDao {
 	 * @return
 	 */
 	List<ProductPic> getProductBigImgsById(String product_id);
+	/**
+	 * 根据商品id获取商品描述信息
+	 * @param product_id
+	 * @return
+	 */
+	String getProductContentById(String product_id);
 	
 	
 }
