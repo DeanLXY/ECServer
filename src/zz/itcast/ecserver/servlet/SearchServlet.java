@@ -35,7 +35,7 @@ public class SearchServlet extends BaseServlet {
 		String keywordStr = req.getParameter(KEYWORD);
 		String orderbyStr = req.getParameter(ORDERBY);
 		
-		keywordStr = DefaultUtils.defalut(keywordStr, "");
+		keywordStr = DefaultUtils.checkNull(keywordStr, "");
 		keywordStr = "%"+keywordStr+"%";
 		orderbyStr = DefaultUtils.checkNull(orderbyStr, "sales desc");
 		SqlSession sqlSession = sqlSessionFactory.openSession();

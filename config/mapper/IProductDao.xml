@@ -6,12 +6,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="zz.itcast.ecserver.dao.IProductDao">
 
 	<select id="getProductById" parameterType="string" resultType="product">
-		SELECT id,product_id productId,NAME,price,marketprice,pic,commentcount,isgift,cid,outoftime,brand_id brandId,sales FROM product
+		SELECT id,product_id
+		productId,NAME,price,marketprice,pic,commentcount,isgift,cid,outoftime,
+		brand_id brandId,sales,number,score
+		FROM product
 		WHERE product_id=#{product_id}
 	</select>
 	<select id="getProductList" resultType="product">
 		SELECT
-		id,product_id productId,NAME,price,marketprice,pic,commentcount,isgift,sales FROM product
+		id,product_id
+		productId,NAME,price,marketprice,pic,commentcount,isgift,sales FROM
+		product
 		WHERE cid=#{0} ORDER BY #{3} LIMIT #{1},#{2}
 	</select>
 
@@ -20,14 +25,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		id,NAME,price,marketprice,pic,commentcount,isgift,sales,href,outoftime
 		FROM product where outoftime > #{3} ORDER BY #{2} LIMIT #{0},#{1}
 	</select>
-	
-	<select id="getProductListById"  resultType="product">
+
+	<select id="getProductListById" resultType="product">
 		SELECT
 		id,NAME,price,marketprice,pic,commentcount,isgift,sales,href,outoftime
-		FROM product where brand_id=#{0}  order by #{3} limit #{1},#{2}
+		FROM product where brand_id=#{0} order by #{3} limit #{1},#{2}
 	</select>
 
-	<select id="getProductListCountById" parameterType="int" resultType="int">
+	<select id="getProductListCountById" parameterType="int"
+		resultType="int">
 		select count(*) from product where brand_id = #{brandId}
 	</select>
 
@@ -36,7 +42,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getProductNewCount" parameterType="long" resultType="int">
-		select count(*) from product where href is not null and outoftime > #{0}
+		select count(*) from product where href is not null and outoftime >
+		#{0}
 	</select>
 
 	<insert id="insertNewProduct" parameterType="product">
@@ -54,15 +61,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{name},#{price},#{marketprice}
 		,#{pic},#{commentcount},#{isgift},#{cid},#{sales},#{outoftime},#{href},#{brandId},#{productId})
 	</insert>
-	
+
 	<insert id="insertNewProductDetailImgs" parameterType="string">
 
-		INSERT INTO product_pic(product_id,alt,url) VALUES(#{0},#{1},#{2})
+		INSERT
+		INTO product_pic(product_id,alt,url) VALUES(#{0},#{1},#{2})
 	</insert>
-	
+
 	<insert id="insertNewProductDetailBigImgs" parameterType="string">
 
-		INSERT INTO product_big_pic(product_id,alt,url) VALUES(#{0},#{1},#{2})
+		INSERT
+		INTO product_big_pic(product_id,alt,url) VALUES(#{0},#{1},#{2})
 	</insert>
 
 

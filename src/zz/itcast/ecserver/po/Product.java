@@ -27,6 +27,27 @@ public class Product {
 	private String productId;
 	// 图片上提示信息
 	private String alt;
+	
+	//库存
+	private int number;
+	// 打分
+	private float score;
+
+	public float getScore() {
+		return score;
+	}
+
+	public void setScore(float score) {
+		this.score = score;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
 
 	public String getAlt() {
 		return alt;
