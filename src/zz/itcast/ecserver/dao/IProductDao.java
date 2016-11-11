@@ -78,4 +78,17 @@ public interface IProductDao {
 	 * 添加新上架商品
 	 */
 	void insertNewProductNews(Product product);
+	/**
+	 * 增加商品图片
+	 */
+	void insertNewProductDetailImgs(String product_id,String alt,String url);
+	/**
+	 * 增加商品大图
+	 * @param product_id
+	 * @param alt
+	 * @param url
+	 */
+	void insertNewProductDetailBigImgs(String product_id,String alt,String url);
+	
+	
 }

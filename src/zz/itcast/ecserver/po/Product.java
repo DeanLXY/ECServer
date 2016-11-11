@@ -23,8 +23,26 @@ public class Product {
 	private String href;
 	//商品归属品牌id
 	private int brandId;
-	
-	
+	// 商品id
+	private String productId;
+	// 图片上提示信息
+	private String alt;
+
+	public String getAlt() {
+		return alt;
+	}
+
+	public void setAlt(String alt) {
+		this.alt = alt;
+	}
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 
 	public int getBrandId() {
 		return brandId;

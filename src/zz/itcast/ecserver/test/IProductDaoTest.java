@@ -140,10 +140,13 @@ public class IProductDaoTest {
 				String img_src = infos[1];
 				String a_title = infos[2];
 				String brand_id = infos[3];
+				String product_id = infos[4];
 				System.out.println(a_title);
 				System.out.println(a_href);
 				System.out.println(img_src);
+				System.out.println(product_id);
 				product = new Product();
+				product.setProductId(product_id);
 				product.setName(a_title);
 				product.setBrandId(Integer.parseInt(brand_id));
 				product.setPic(img_src);
@@ -169,7 +172,47 @@ public class IProductDaoTest {
 			close(fr);
 		}
 	}
+	@Test
+	public void testInsertNewProductDetailPicAndBigPic() {
+		
+		FileReader fr = null;
+		BufferedReader br = null;
+		String line = null;
+		try {
+			fr = new FileReader(
+					"D:\\Android\\workspace-j2ee\\itcast16\\ECServerz19\\src\\zz\\itcast\\ecserver\\test\\jd_brand_detail.config");
+			br = new BufferedReader(fr);
+			SqlSession sqlSession = sessionFactory.openSession();
+			IProductDao productDao = sqlSession.getMapper(IProductDao.class);
+			while ((line = br.readLine()) != null) {
+				String[] infos = line.split("#");
+				String img_alt = infos[0];
+				String img_src = infos[1];
+				String img_big_src = infos[2];
+				String product_id = infos[3];
+				System.out.println(img_alt);
+				System.out.println(img_src);
+				System.out.println(img_big_src);
+				System.out.println(product_id);
+				productDao.insertNewProductDetailImgs(product_id, img_alt,img_src);
+				productDao.insertNewProductDetailBigImgs(product_id, img_alt,img_big_src);
+				sqlSession.commit();
+			}
+			sqlSession.close();
+			
+		} catch (Exception e) {
+			System.err.println(e+"line = "+line);
+		} finally {
+			close(br);
+			close(fr);
+		}
+	}
 
+	
+	
+	
+	
+	
 	public void close(Closeable closeable) {
 		if (closeable != null) {
 			try {

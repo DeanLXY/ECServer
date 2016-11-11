@@ -42,17 +42,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertNewProduct" parameterType="product">
 
 		INSERT INTO
-		product(NAME,price,marketprice,pic,commentcount,isgift,cid,sales)
+		product(NAME,price,marketprice,pic,commentcount,isgift,cid,sales,product_id)
 		VALUES(#{name},#{price},#{marketprice}
-		,#{pic},#{commentcount},#{isgift},#{cid},#{sales})
+		,#{pic},#{commentcount},#{isgift},#{cid},#{sales},#{productId})
 	</insert>
 
 	<insert id="insertNewProductNews" parameterType="product">
 
 		INSERT INTO
-		product(NAME,price,marketprice,pic,commentcount,isgift,cid,sales,outoftime,href,brand_id)
+		product(NAME,price,marketprice,pic,commentcount,isgift,cid,sales,outoftime,href,brand_id,product_id)
 		VALUES(#{name},#{price},#{marketprice}
-		,#{pic},#{commentcount},#{isgift},#{cid},#{sales},#{outoftime},#{href},#{brandId})
+		,#{pic},#{commentcount},#{isgift},#{cid},#{sales},#{outoftime},#{href},#{brandId},#{productId})
+	</insert>
+	
+	<insert id="insertNewProductDetailImgs" parameterType="string">
+
+		INSERT INTO product_pic(product_id,alt,url) VALUES(#{0},#{1},#{2})
+	</insert>
+	
+	<insert id="insertNewProductDetailBigImgs" parameterType="string">
+
+		INSERT INTO product_big_pic(product_id,alt,url) VALUES(#{0},#{1},#{2})
 	</insert>
 
 
