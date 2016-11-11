@@ -4,6 +4,7 @@ import java.util.List;
 
 import zz.itcast.ecserver.po.Brand;
 import zz.itcast.ecserver.po.Product;
+import zz.itcast.ecserver.po.ProductPic;
 
 /**
  * 商品的 dao
@@ -89,6 +90,20 @@ public interface IProductDao {
 	 * @param url
 	 */
 	void insertNewProductDetailBigImgs(String product_id,String alt,String url);
+
+	/**
+	 * 根据商品id获取商品图片
+	 * @param product_id
+	 * @return
+	 */
+	List<ProductPic> getProductImgsById(String product_id);
+	
+	/**
+	 * 根据商品id获取商品大图
+	 * @param product_id
+	 * @return
+	 */
+	List<ProductPic> getProductBigImgsById(String product_id);
 	
 	
 }

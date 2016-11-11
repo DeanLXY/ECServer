@@ -15,6 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import zz.itcast.ecserver.dao.IProductDao;
 import zz.itcast.ecserver.po.Product;
+import zz.itcast.ecserver.po.ProductPic;
 import zz.itcast.ecserver.utils.CommonUtil;
 import zz.itcast.ecserver.utils.DefaultUtils;
 
@@ -39,10 +40,16 @@ public class ProductDetailServlet extends BaseServlet {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		IProductDao productDao = sqlSession.getMapper(IProductDao.class);
 		Product product = productDao.getProductById(pIdStr);
+		List<ProductPic> productImgs = productDao.getProductImgsById(pIdStr);
+		List<ProductPic> productBigImgs = productDao.getProductBigImgsById(pIdStr);
 		sqlSession.close();
 		
 		Map<String, Object> data = new HashMap<String, Object>();
 		List<Object> dataObj = new ArrayList<Object>();
+		Map<String,Object> imgData = new HashMap<String ,Object>();
+		imgData.put("pics", productImgs);
+		imgData.put("bigpic", productBigImgs);
+		dataObj.add(imgData);
 		dataObj.add(product);
 		data.put("response", "product");
 		data.put("product", dataObj);

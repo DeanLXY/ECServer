@@ -47,7 +47,6 @@ public class SearchServlet extends BaseServlet {
 		data.put("listCount", productList.size());
 		data.put("productList", productList);
 		
-//		CommonUtil.renderJson(resp, data);
 		CommonUtil.renderJsonWithFilter(resp, data, new SimplePropertyPreFilter(Product.class,"id","name","pic","price","marketprice","commentcount","sales"));
 		
 	}
