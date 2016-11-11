@@ -1,4 +1,4 @@
-package zz.itcast.ecserver.po;
+package zz.itcast.ecserver.servlet;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.ibatis.session.SqlSession;
 
 import zz.itcast.ecserver.dao.IBrandDao;
-import zz.itcast.ecserver.servlet.BaseServlet;
+import zz.itcast.ecserver.po.Brand;
 import zz.itcast.ecserver.utils.CommonUtil;
 
 /**

@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getBrandListByKey" parameterType="string"
 		resultType="brand">
 		SELECT
-		id,title name,img pic,href,brand_key FROM
+		brand_id id,title name,img pic,href,brand_key FROM
 		brand where brand_key = #{key}
 	</select>
 	<insert id="addNewBrand" parameterType="Brand">
