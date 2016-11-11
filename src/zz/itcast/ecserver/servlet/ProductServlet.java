@@ -42,7 +42,7 @@ public class ProductServlet extends BaseServlet {
 			return;
 		int cid = DefaultUtils.checkNull(cidStr, 0);
 		int page = DefaultUtils.checkNull(pageStr, 0);
-		int pageNum = DefaultUtils.checkNull(pageNumStr, 10);
+		int pageNum = DefaultUtils.checkNull(pageNumStr, 20);
 		String orderby = DefaultUtils.checkNull(orderbyStr, "sales desc");
 		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
