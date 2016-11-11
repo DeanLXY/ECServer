@@ -40,7 +40,6 @@ public class ProductDetailServlet extends BaseServlet {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		IProductDao productDao = sqlSession.getMapper(IProductDao.class);
 		Product product = productDao.getProductById(pIdStr);
-		List<String> productContent = productDao.getProductContentById(pIdStr);
 		List<ProductPic> productImgs = productDao.getProductImgsById(pIdStr);
 		List<ProductPic> productBigImgs = productDao.getProductBigImgsById(pIdStr);
 		sqlSession.close();
