@@ -35,5 +35,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mapper/categorydao.xml" />
 		<mapper resource="mapper/searchrecommend.xml" />
 		<mapper resource="mapper/searchdao.xml" />
+		<mapper resource="mapper/branddao.xml" />
 	</mappers>
 </configuration>
