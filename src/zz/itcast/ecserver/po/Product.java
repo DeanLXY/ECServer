@@ -21,7 +21,18 @@ public class Product {
 	private long outoftime;
 	// 商品网页链接
 	private String href;
+	//商品归属品牌id
+	private int brandId;
 	
+	
+
+	public int getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(int brandId) {
+		this.brandId = brandId;
+	}
 
 	public String getHref() {
 		return href;

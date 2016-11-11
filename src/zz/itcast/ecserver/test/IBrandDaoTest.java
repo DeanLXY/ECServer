@@ -45,9 +45,11 @@ public class IBrandDaoTest {
 				String[] infos = line.split("#");
 				String a_href = infos[0];
 				String img_src = infos[1];
+				String brand_id = infos[2];
 				brand = new Brand();
 				brand.setName("");
 				brand.setPic(img_src);
+				brand.setBrandId(brand_id);
 				brand.setKey("国际品牌");
 				brand.setHref(a_href);
 				brandDao.addNewBrand(brand);

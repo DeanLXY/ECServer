@@ -2,6 +2,7 @@ package zz.itcast.ecserver.dao;
 
 import java.util.List;
 
+import zz.itcast.ecserver.po.Brand;
 import zz.itcast.ecserver.po.Product;
 
 /**
@@ -37,6 +38,22 @@ public interface IProductDao {
 	 */
 	List<Product> getProductNewList(int page,int pageNum,String order,long systemtime);
 	
+	/**
+	 * 根据品牌id获取商品列表
+	 * @param brandId
+	 * @param orderBy 
+	 * @param pageNum 
+	 * @param page 
+	 * @return
+	 */
+	List<Product> getProductListById(int brandId, int page, int pageNum, String orderBy);	
+	
+	/**
+	 * 查询当前品牌中 有多少商品
+	 * @param brandId
+	 * @return
+	 */
+	int getProductListCountById(int brandId);
 	
 	/**
 	 * 根据分类获取 商品数量

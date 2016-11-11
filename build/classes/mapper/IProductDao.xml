@@ -20,6 +20,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		id,NAME,price,marketprice,pic,commentcount,isgift,sales,href,outoftime
 		FROM product where outoftime > #{3} ORDER BY #{2} LIMIT #{0},#{1}
 	</select>
+	
+	<select id="getProductListById"  resultType="product">
+		SELECT
+		id,NAME,price,marketprice,pic,commentcount,isgift,sales,href,outoftime
+		FROM product where brand_id=#{0}  order by #{3} limit #{1},#{2}
+	</select>
+
+	<select id="getProductListCountById" parameterType="int" resultType="int">
+		select count(*) from product where brand_id = #{brandId}
+	</select>
 
 	<select id="getProductCount" parameterType="int" resultType="int">
 		select count(*) from product where cid = #{cid}
@@ -40,9 +50,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertNewProductNews" parameterType="product">
 
 		INSERT INTO
-		product(NAME,price,marketprice,pic,commentcount,isgift,cid,sales,outoftime,href)
+		product(NAME,price,marketprice,pic,commentcount,isgift,cid,sales,outoftime,href,brand_id)
 		VALUES(#{name},#{price},#{marketprice}
-		,#{pic},#{commentcount},#{isgift},#{cid},#{sales},#{outoftime},#{href})
+		,#{pic},#{commentcount},#{isgift},#{cid},#{sales},#{outoftime},#{href},#{brandId})
 	</insert>
 
 

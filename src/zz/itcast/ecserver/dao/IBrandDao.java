@@ -28,6 +28,7 @@ public interface IBrandDao {
 	 * @return
 	 */
 	List<Brand> getBrandListByKey(String brandKey);	
+
 	
 	/**
 	 * 添加新商品 给 单元测试用

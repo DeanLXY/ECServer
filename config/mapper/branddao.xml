@@ -25,6 +25,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<insert id="addNewBrand" parameterType="Brand">
 		insert into
-		brand(brand_key,title,img,href) values(#{key},#{name},#{pic},#{href})
+		brand(brand_key,title,img,href,brand_id) values(#{key},#{name},#{pic},#{href},#{brandId})
 	</insert>
 </mapper>

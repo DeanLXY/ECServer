@@ -12,6 +12,16 @@ public class Brand {
 	private String pic;
 	private String href;
 	private String key;
+	private String brandId;
+	
+
+	public String getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(String brandId) {
+		this.brandId = brandId;
+	}
 
 	public String getKey() {
 		return key;

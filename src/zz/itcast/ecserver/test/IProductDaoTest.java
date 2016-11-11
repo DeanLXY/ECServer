@@ -120,6 +120,55 @@ public class IProductDaoTest {
 			close(fr);
 		}
 	}
+	@Test
+	public void testInsertNewBrandProduct() {
+		
+		FileReader fr = null;
+		BufferedReader br = null;
+		String line = null;
+		try {
+			fr = new FileReader(
+					"D:\\Android\\workspace-j2ee\\itcast16\\ECServerz19\\src\\zz\\itcast\\ecserver\\test\\jd_brand_list.config");
+			br = new BufferedReader(fr);
+			Product product;
+			Random random = new Random();
+			SqlSession sqlSession = sessionFactory.openSession();
+			IProductDao productDao = sqlSession.getMapper(IProductDao.class);
+			while ((line = br.readLine()) != null) {
+				String[] infos = line.split("#");
+				String a_href = infos[0];
+				String img_src = infos[1];
+				String a_title = infos[2];
+				String brand_id = infos[3];
+				System.out.println(a_title);
+				System.out.println(a_href);
+				System.out.println(img_src);
+				product = new Product();
+				product.setName(a_title);
+				product.setBrandId(Integer.parseInt(brand_id));
+				product.setPic(img_src);
+				product.setHref(a_href);
+				product.setOutoftime(System.currentTimeMillis()+1000*60*60*12*random.nextInt(30));
+				int price = random.nextInt(399);
+				product.setPrice(price);
+				product.setMarketprice(price + random.nextInt(48));
+				product.setIsgift(false);
+				int commentcount = random.nextInt(66534);
+				product.setCommentcount(commentcount);
+				product.setSales(commentcount + random.nextInt(1889));
+				product.setCid(1001 + random.nextInt(7));
+				productDao.insertNewProductNews(product);
+				sqlSession.commit();
+			}
+			sqlSession.close();
+			
+		} catch (Exception e) {
+			System.err.println("line = "+line);
+		} finally {
+			close(br);
+			close(fr);
+		}
+	}
 
 	public void close(Closeable closeable) {
 		if (closeable != null) {
