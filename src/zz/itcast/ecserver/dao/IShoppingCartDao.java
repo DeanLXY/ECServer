@@ -16,9 +16,8 @@ public interface IShoppingCartDao {
 	 * 添加商品 到购物车
 	 * @param user_id 用户id
 	 * @param product_id 商品id
-	 * @param product_num 商品数量
 	 */
-	void addNewProduct2Cart(int user_id,String product_id,int product_num);
+	void addNewProduct2Cart(int user_id,String product_id);
 	
 	
 	/**

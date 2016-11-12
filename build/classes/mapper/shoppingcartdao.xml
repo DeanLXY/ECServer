@@ -7,16 +7,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getProductCountFromCartByUserId" parameterType="int"
 		resultType="CartItem">
-		SELECT COUNT(*) count,product_id productId FROM shoppingcart WHERE
+		SELECT COUNT(*) count,product_id productId FROM
+		shoppingcart WHERE
 		user_id =
 		#{user_id} GROUP BY product_id
 	</select>
-	
+
 	<select id="getProductFromCartByProductId" parameterType="string"
 		resultType="product">
 		SELECT * FROM product WHERE
 		product_id =
-		#{product_id} GROUP BY product_id
+		#{product_id} GROUP
+		BY product_id
 	</select>
+	<!-- 添加购物车 -->
+	<insert id="addNewProduct2Cart">
+		INSERT INTO shoppingcart(user_id,product_id ) VALUES(#{0},#{1})
+	</insert>
 
 </mapper>
