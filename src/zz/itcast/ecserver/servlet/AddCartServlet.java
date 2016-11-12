@@ -1,6 +1,8 @@
 package zz.itcast.ecserver.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import zz.itcast.ecserver.dao.IProductDao;
 import zz.itcast.ecserver.dao.IShoppingCartDao;
 import zz.itcast.ecserver.po.Product;
+import zz.itcast.ecserver.utils.CommonUtil;
 import zz.itcast.ecserver.utils.DefaultUtils;
 
 /**
@@ -79,5 +82,9 @@ public class AddCartServlet extends BaseServlet {
 			
 		}
 		sqlSession.close();
+		
+		Map<String, Object> data= new HashMap<String, Object>();
+		data.put("response", "cart");
+		CommonUtil.renderJson(resp, data);
 	}
 }
