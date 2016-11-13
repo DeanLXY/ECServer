@@ -38,5 +38,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mapper/branddao.xml" />
 		<mapper resource="mapper/shoppingcartdao.xml" />
 		<mapper resource="mapper/addressareadao.xml" />
+		<mapper resource="mapper/addressareadao.xml" />
+		<mapper resource="mapper/addressdao.xml" />
 	</mappers>
 </configuration>

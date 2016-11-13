@@ -1,12 +1,20 @@
 package zz.itcast.ecserver.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
+import zz.itcast.ecserver.dao.IAddressAreaDao;
+import zz.itcast.ecserver.dao.IAddressDao;
+import zz.itcast.ecserver.po.AddressInfo;
+import zz.itcast.ecserver.utils.CommonUtil;
 import zz.itcast.ecserver.utils.DefaultUtils;
 
 /**
@@ -36,6 +44,7 @@ public class AddressSaveServlet extends BaseServlet {
 		String provinceStr = req.getParameter(PROVINCE);
 		String cityStr = req.getParameter(CITY);
 		String areaStr = req.getParameter(AREA);
+		String fixedtelStr = req.getParameter("fixedtel");
 		String addressDetailStr = req.getParameter(ADDRESS_DETAIL);
 		String zipCodeStr = req.getParameter(ZIP_CODE);
 		
@@ -43,6 +52,39 @@ public class AddressSaveServlet extends BaseServlet {
 		if (b) {
 			return;
 		}
+		
+		int id = DefaultUtils.checkNull(idStr, -1);
+		if (id != -1) {
+			System.out.println("当前用户 修改地址");
+			return;
+		}
+		
+		
+		int user_id = DefaultUtils.checkNull(userIdStr, 0);
+		String name = DefaultUtils.checkNull(nameStr, "<unknown>");
+		String phoneNumber = DefaultUtils.checkNull(phoneNumberStr, "<unknown>");
+		String province= DefaultUtils.checkNull(provinceStr, "<unknown>");
+		String city = DefaultUtils.checkNull(cityStr, "<unknown>");
+		String area = DefaultUtils.checkNull(areaStr, "<unknown>");
+		String fixedtel = DefaultUtils.checkNull(fixedtelStr, "<unknown>");
+		String addressDetail = DefaultUtils.checkNull(addressDetailStr, "<unknown>");
+		String zipCode = DefaultUtils.checkNull(zipCodeStr, "<unknown>");
+		//新增地址  均为  默认地址   将其他默认地址 设置 非默认
+		
+		
+		AddressInfo addressInfo = new AddressInfo(id, name, phoneNumber, fixedtel, province, city, area, addressDetail, zipCode, true);
+		
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		IAddressDao addressDao = sqlSession.getMapper(IAddressDao.class);
+		addressDao.setAllAddressNotDefault(user_id);
+		addressDao.addNewAddressInfo(user_id, addressInfo);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("response", "addresssave");
+		CommonUtil.renderJson(resp, data);
+		
 		
 	}
 }
