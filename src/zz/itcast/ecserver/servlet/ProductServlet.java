@@ -58,7 +58,7 @@ public class ProductServlet extends BaseServlet {
 		Map<String,Object> data = new HashMap<String,Object>();
 		data.put("response", "category_productlist");
 		data.put("listCount", productNewCount);
-		data.put("productlist", productList);
+		data.put("productList", productList);
 		CommonUtil.renderJson(resp, data);
 		
 	}
