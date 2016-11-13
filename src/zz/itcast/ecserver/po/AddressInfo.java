@@ -20,6 +20,10 @@ public class AddressInfo {
 	private String zipCode;
 	private boolean isDefault;
 
+	public AddressInfo() {
+		super();
+	}
+
 	public int getId() {
 		return id;
 	}

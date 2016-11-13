@@ -1,5 +1,7 @@
 package zz.itcast.ecserver.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import zz.itcast.ecserver.po.AddressInfo;
@@ -24,4 +26,12 @@ public interface IAddressDao {
 	 * @param addressInfo
 	 */
 	void addNewAddressInfo(@Param("userid") int user_id, @Param("address") AddressInfo addressInfo);
+	
+	
+	/**
+	 * 根据用户id获取 地址列表
+	 * @param user_id
+	 * @return
+	 */
+	List<AddressInfo> getAddressInfoListByUserId(int user_id);
 }

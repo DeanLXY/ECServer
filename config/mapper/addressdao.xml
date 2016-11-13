@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="zz.itcast.ecserver.dao.IAddressDao">
 
 	<update id="setAllAddressNotDefault" parameterType="int">
-		UPDATE addresslist SET is_default=FALSE WHERE user_id=#{user_id}
+		UPDATE
+		addresslist SET is_default=FALSE WHERE user_id=#{user_id}
 	</update>
 
 	<insert id="addNewAddressInfo" parameterType="map">
@@ -16,4 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{userid},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},true)
 
 	</insert>
+	
+	<select id="getAddressInfoListByUserId" parameterType="int"
+		resultType="AddressInfo">
+		SELECT id,NAME,phone_number
+		phoneNumber,fixedtel,province_id provinceId,city_id cityId,area_id
+		areaId,address_detail addressDetail,zip_code zipCode,is_default
+		isDefault FROM addresslist WHERE user_id=#{user_id}
+	</select>
 </mapper>
