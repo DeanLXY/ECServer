@@ -34,4 +34,10 @@ public interface IAddressDao {
 	 * @return
 	 */
 	List<AddressInfo> getAddressInfoListByUserId(int user_id);
+	
+	/**
+	 * 根据 地址id删除 (state = 0)  0表示无效 1表示有效
+	 * @param address_id
+	 */
+	void deleteAddressInfoByUserIdAndAddressId(int address_id);
 }

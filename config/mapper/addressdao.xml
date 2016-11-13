@@ -17,12 +17,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{userid},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},true)
 
 	</insert>
-	
+
 	<select id="getAddressInfoListByUserId" parameterType="int"
 		resultType="AddressInfo">
 		SELECT id,NAME,phone_number
 		phoneNumber,fixedtel,province_id provinceId,city_id cityId,area_id
 		areaId,address_detail addressDetail,zip_code zipCode,is_default
-		isDefault FROM addresslist WHERE user_id=#{user_id}
+		isDefault FROM addresslist WHERE user_id=#{user_id} and state = 1
 	</select>
+	<update id="deleteAddressInfoByUserIdAndAddressId"
+		parameterType="int">
+		UPDATE addresslist SET state=0 WHERE id = #{user_id}
+	</update>
 </mapper>
