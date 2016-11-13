@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getProductListById" resultType="product">
 		SELECT
-		id,NAME,price,marketprice,pic,commentcount,isgift,sales,href,outoftime
+		id,product_id productId,NAME,price,marketprice,pic,commentcount,isgift,sales,href,outoftime
 		FROM product where brand_id=#{0} order by #{3} limit #{1},#{2}
 	</select>
 
