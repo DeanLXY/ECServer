@@ -2,7 +2,6 @@ package zz.itcast.ecserver.dao;
 
 import java.util.List;
 
-import zz.itcast.ecserver.po.Brand;
 import zz.itcast.ecserver.po.Product;
 import zz.itcast.ecserver.po.ProductPic;
 

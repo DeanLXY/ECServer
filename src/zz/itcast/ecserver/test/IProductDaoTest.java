@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
+import java.util.UUID;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -45,11 +46,13 @@ public class IProductDaoTest {
 			IProductDao productDao = sqlSession.getMapper(IProductDao.class);
 			while ((line = br.readLine()) != null) {
 				String[] infos = line.split("#");
-				String alt = infos[0];
-				String src = infos[1];
+				String product_id = infos[0];
+				String alt = infos[1];
+				String src = infos[2];
 				System.out.println(alt);
 				System.out.println(src);
 				product = new Product();
+				product.setProductId(product_id);
 				product.setName(alt);
 				product.setPic(src);
 				int price = random.nextInt(399);

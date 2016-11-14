@@ -40,5 +40,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mapper/addressareadao.xml" />
 		<mapper resource="mapper/addressareadao.xml" />
 		<mapper resource="mapper/addressdao.xml" />
+		<mapper resource="mapper/orderdao.xml" />
 	</mappers>
 </configuration>

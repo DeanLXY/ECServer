@@ -43,13 +43,13 @@ public class ProductServlet extends BaseServlet {
 		int cid = DefaultUtils.checkNull(cidStr, 0);
 		int page = DefaultUtils.checkNull(pageStr, 0);
 		int pageNum = DefaultUtils.checkNull(pageNumStr, 20);
-		String orderby = DefaultUtils.checkNull(orderbyStr, "sales desc");
+		String orderby = DefaultUtils.checkNull(orderbyStr, "sales");
 		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		IProductDao productDao = sqlSession.getMapper(IProductDao.class);
 		page = page * pageNum;
 		List<Product> productList = productDao.getProductList(cid, page, pageNum, orderby);
-		
+			
 		int productNewCount = productDao.getProductCount(cid);
 		
 		sqlSession.close();

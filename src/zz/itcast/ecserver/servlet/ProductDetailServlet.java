@@ -40,9 +40,17 @@ public class ProductDetailServlet extends BaseServlet {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		IProductDao productDao = sqlSession.getMapper(IProductDao.class);
 		Product product = productDao.getProductById(pIdStr);
+		
+		
 		List<ProductPic> productImgs = productDao.getProductImgsById(pIdStr);
 		List<ProductPic> productBigImgs = productDao.getProductBigImgsById(pIdStr);
 		sqlSession.close();
+	
+		
+		if (product == null) {
+			DefaultUtils.defalutError(resp, "不存在的商品");
+			return ;
+		}
 		
 		Map<String, Object> data = new HashMap<String, Object>();
 		List<Object> dataObj = new ArrayList<Object>();
