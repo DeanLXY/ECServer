@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 
-import zz.itcast.ecserver.dao.IAddressAreaDao;
 import zz.itcast.ecserver.dao.IAddressDao;
 import zz.itcast.ecserver.po.AddressInfo;
 import zz.itcast.ecserver.utils.CommonUtil;

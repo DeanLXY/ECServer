@@ -8,9 +8,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getOrderListByUserId" resultType="OrderInfo"
 		parameterType="int">
 
-		SELECT id
-		order_id,user_id,address_id,delivery_type,payment_type,invoice_type,invoice_title invoiceTitle,invoice_content invoiceContent,STATUS,price,time,flag
-		FROM orderlist WHERE user_id=#{0} and type=#{1}
+		<!-- SELECT id order_id,user_id,address_id,delivery_type,payment_type,invoice_type,invoice_title 
+			invoiceTitle,invoice_content invoiceContent,STATUS,price,time,flag FROM orderlist 
+			WHERE user_id=#{0} and type=#{1} -->
+
+
+		SELECT id orderId,user_id,address_id,(SELECT content FROM
+		deliverylist WHERE TYPE = (SELECT delivery_type FROM orderlist WHERE
+		user_id=#{0} AND TYPE=#{1})
+
+		) deliveryType,(SELECT content FROM
+		paymentlist WHERE TYPE = (SELECT
+		payment_type FROM orderlist WHERE
+		user_id=#{0} AND TYPE=#{1})
+
+		) paymentType,(SELECT content FROM
+		invoicelist WHERE TYPE = (SELECT
+		invoice_type FROM orderlist WHERE
+		user_id=#{0} AND TYPE=#{1})
+
+		) invoiceType,invoice_title
+		invoiceTitle,invoice_content
+		invoiceContent,STATUS,price,TIME,flag
+		FROM
+		orderlist WHERE user_id=#{0} AND TYPE=#{1}
+
 	</select>
 
 </mapper>
