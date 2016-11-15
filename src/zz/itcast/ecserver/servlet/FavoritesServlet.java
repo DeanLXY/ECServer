@@ -54,7 +54,7 @@ public class FavoritesServlet extends BaseServlet {
 		data.put("listCount", favoritesList.size());
 		
 //		CommonUtil.renderJson(resp, data);
-		CommonUtil.renderJsonWithFilter(resp, data, new SimplePropertyPreFilter(Product.class, "id","name","pic","price","marketprice","commentcount","isgift"));
+		CommonUtil.renderJsonWithFilter(resp, data, new SimplePropertyPreFilter(Product.class, "id","productId","name","pic","price","marketprice","commentcount","isgift"));
 		
 		
 		

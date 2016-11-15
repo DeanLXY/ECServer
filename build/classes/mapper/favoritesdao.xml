@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="zz.itcast.ecserver.dao.IFavoritesDao">
 
 	<select id="getFavoritesList"  parameterType="int" resultType="product">
-	SELECT id,NAME,price,marketprice,pic,commentcount,isgift FROM favorites WHERE userid = #{0} LIMIT #{1},#{2}
+	SELECT id,productid productId,NAME,price,marketprice,pic,commentcount,isgift FROM favorites WHERE userid = #{0} LIMIT #{1},#{2}
 
 	</select>
 	
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="getFavoritesById" resultType="product">
-		SELECT * FROM favorites WHERE productid = #{1} and userid=#{0}
+		SELECT userid,productid productId,NAME,price,marketprice,pic,commentcount,isgift FROM favorites WHERE productid = #{1} and userid=#{0}
 	</select>
 
 </mapper>
