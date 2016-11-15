@@ -46,9 +46,8 @@ public class NewsProductServlet extends BaseServlet {
 		List<Product> productList = productDao.getProductNewList(page, pageNum, orderby,System.currentTimeMillis());
 		
 		int productNewCount = productDao.getProductNewCount(System.currentTimeMillis());
+		System.out.println(System.currentTimeMillis());
 		sqlSession.close();
-		
-		
 		Map<String,Object> data = new HashMap<String,Object>();
 		data.put("response", "newProduct");
 		data.put("listCount", productNewCount);
