@@ -14,25 +14,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 		SELECT id orderId,user_id,address_id,(SELECT content FROM
-		deliverylist WHERE TYPE = (SELECT delivery_type FROM orderlist WHERE
-		user_id=#{0} AND TYPE=#{1})
+		deliverylist
+		WHERE TYPE = (SELECT delivery_type FROM orderlist WHERE
+		user_id=#{0}
+		AND TYPE=#{1})
 
 		) deliveryType,(SELECT content FROM
-		paymentlist WHERE TYPE = (SELECT
+		paymentlist WHERE
+		TYPE = (SELECT
 		payment_type FROM orderlist WHERE
-		user_id=#{0} AND TYPE=#{1})
+		user_id=#{0} AND
+		TYPE=#{1})
 
 		) paymentType,(SELECT content FROM
-		invoicelist WHERE TYPE = (SELECT
+		invoicelist WHERE TYPE =
+		(SELECT
 		invoice_type FROM orderlist WHERE
 		user_id=#{0} AND TYPE=#{1})
 
-		) invoiceType,invoice_title
+		)
+		invoiceType,invoice_title
 		invoiceTitle,invoice_content
 		invoiceContent,STATUS,price,TIME,flag
 		FROM
-		orderlist WHERE user_id=#{0} AND TYPE=#{1}
+		orderlist WHERE user_id=#{0}
+		AND TYPE=#{1}
+	</select>
 
+	<insert id="submitOrderInfoWhichUser" parameterType="map">
+		INSERT INTO
+		orderlist(order_id,user_id,address_id,delivery_type,payment_type,invoice_type,invoice_title,invoice_content,
+		STATUS,TIME,price,flag,TYPE,product_list)
+		VALUES(UUID(),#{user_id},#{orderInfo.addressId},#{orderInfo.delivery_type}
+		,#{orderInfo.payment_type},#{orderInfo.invoice_type}
+		,#{orderInfo.invoiceTitle},#{orderInfo.invoiceContent}
+		,#{orderInfo.status},#{orderInfo.time},#{orderInfo.price},
+		#{orderInfo.flag},1,#{product_list}
+		)
+	</insert>
+
+	<select id="getPaymentTypeStrByPaymentType" parameterType="int"
+		resultType="string">
+		SELECT content FROM
+		paymentlist WHERE
+		TYPE =#{type}
 	</select>
 
 </mapper>

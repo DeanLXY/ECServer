@@ -13,8 +13,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addNewAddressInfo" parameterType="map">
 
 		INSERT INTO
-		addresslist(user_id,NAME,phone_number,fixedtel,province_id,city_id,area_id,address_detail,zip_code,is_default)
-		VALUES(#{userid},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},#{address.name},true)
+		addresslist(
+		user_id,
+		NAME,
+		phone_number,
+		fixedtel,
+		province_id,
+		city_id,
+		area_id,
+		address_detail,
+		zip_code,
+		is_default)
+		VALUES(
+		#{userid},
+		#{address.name},
+		#{address.phoneNumber},
+		#{address.fixedtel},
+		#{address.provinceId},
+		#{address.cityId},
+		#{address.areaId},
+		#{address.addressDetail},
+		#{address.zipCode},
+		true)
 
 	</insert>
 

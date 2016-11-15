@@ -2,6 +2,7 @@ package zz.itcast.ecserver.po;
 
 /**
  * 订单信息
+ * 
  * @author wangx
  *
  */
@@ -9,8 +10,11 @@ public class OrderInfo {
 	private int id;
 	private String orderId;
 	private int addressId;
+	private int delivery_type;
 	private String deliveryType;
+	private int payment_type;
 	private String paymentType;
+	private int invoice_type;
 	private String invoiceType;
 	private String invoiceTitle;
 	private String invoiceContent;
@@ -19,7 +23,7 @@ public class OrderInfo {
 	private String time;
 	private float price;
 	// 订单标识，1=>可删除可修改 2=>不可修改 3=>已完成
-	private int flag;
+	private int flag =1;
 
 	public int getId() {
 		return id;
@@ -51,6 +55,30 @@ public class OrderInfo {
 
 	public void setDeliveryType(String deliveryType) {
 		this.deliveryType = deliveryType;
+	}
+
+	public int getDelivery_type() {
+		return delivery_type;
+	}
+
+	public void setDelivery_type(int delivery_type) {
+		this.delivery_type = delivery_type;
+	}
+
+	public int getPayment_type() {
+		return payment_type;
+	}
+
+	public void setPayment_type(int payment_type) {
+		this.payment_type = payment_type;
+	}
+
+	public int getInvoice_type() {
+		return invoice_type;
+	}
+
+	public void setInvoice_type(int invoice_type) {
+		this.invoice_type = invoice_type;
 	}
 
 	public String getPaymentType() {
@@ -119,10 +147,10 @@ public class OrderInfo {
 
 	@Override
 	public String toString() {
-		return "OrderInfo [id=" + id + ", orderId=" + orderId + ", addressId=" + addressId + ", deliveryType="
-				+ deliveryType + ", paymentType=" + paymentType + ", invoiceType=" + invoiceType + ", invoiceTitle="
+		return "OrderInfo [id=" + id + ", orderId=" + orderId + ", addressId=" + addressId + ", delivery_type="
+				+ delivery_type + ", deliveryType=" + deliveryType + ", payment_type=" + payment_type + ", paymentType="
+				+ paymentType + ", invoice_type=" + invoice_type + ", invoiceType=" + invoiceType + ", invoiceTitle="
 				+ invoiceTitle + ", invoiceContent=" + invoiceContent + ", status=" + status + ", time=" + time
 				+ ", price=" + price + ", flag=" + flag + "]";
 	}
-
 }
