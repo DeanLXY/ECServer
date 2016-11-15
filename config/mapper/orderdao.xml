@@ -15,19 +15,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		SELECT id orderId,user_id,address_id,(SELECT content FROM
 		deliverylist
-		WHERE TYPE = (SELECT delivery_type FROM orderlist WHERE
+		WHERE TYPE in (SELECT delivery_type FROM orderlist WHERE
 		user_id=#{0}
 		AND TYPE=#{1})
 
 		) deliveryType,(SELECT content FROM
 		paymentlist WHERE
-		TYPE = (SELECT
+		TYPE in (SELECT
 		payment_type FROM orderlist WHERE
 		user_id=#{0} AND
 		TYPE=#{1})
 
 		) paymentType,(SELECT content FROM
-		invoicelist WHERE TYPE =
+		invoicelist WHERE TYPE in
 		(SELECT
 		invoice_type FROM orderlist WHERE
 		user_id=#{0} AND TYPE=#{1})
