@@ -3,6 +3,7 @@ package zz.itcast.ecserver.servlet;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -58,10 +59,10 @@ public class OrdersumbitServlet extends BaseServlet {
 		int addressId = DefaultUtils.checkNull(addressIdStr, 1);
 		int paymentType = DefaultUtils.checkNull(paymentTypeStr, 1);
 		int deliveryType = DefaultUtils.checkNull(deliveryTypeStr, 2);
-		int invoiceType = DefaultUtils.checkNull(invoiceTypeStr,1);
-		String invoiceTitle = DefaultUtils.checkNull(invoiceTitleStr,"个人");
-		String invoiceContent = DefaultUtils.checkNull(invoiceContentStr,"图书");
-		
+		int invoiceType = DefaultUtils.checkNull(invoiceTypeStr, 1);
+		String invoiceTitle = DefaultUtils.checkNull(invoiceTitleStr, "个人");
+		String invoiceContent = DefaultUtils.checkNull(invoiceContentStr, "图书");
+
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		IProductDao productDao = sqlSession.getMapper(IProductDao.class);
 		IOrderDao orderDao = sqlSession.getMapper(IOrderDao.class);
@@ -89,10 +90,12 @@ public class OrdersumbitServlet extends BaseServlet {
 			}
 			int productNum = DefaultUtils.checkNull(product_num, 0);
 			totalCount += productNum;
-			totalPrice += productNum*product.getPrice();
+			totalPrice += productNum * product.getPrice();
 		}
 
 		OrderInfo orderInfo = new OrderInfo();
+		String order_id = UUID.randomUUID().toString();
+		orderInfo.setOrderId(order_id);
 		orderInfo.setAddressId(addressId);
 		orderInfo.setPayment_type(paymentType);
 		orderInfo.setDelivery_type(deliveryType);
@@ -100,24 +103,22 @@ public class OrdersumbitServlet extends BaseServlet {
 		orderInfo.setInvoiceTitle(invoiceTitle);
 		orderInfo.setInvoiceContent(invoiceContent);
 		orderInfo.setPrice(totalPrice);
-		orderInfo.setTime(System.currentTimeMillis()+"");
+		orderInfo.setTime(System.currentTimeMillis() + "");
 		orderDao.submitOrderInfoWhichUser(user_id, skuStr, orderInfo);
 		sqlSession.commit();
 		String paymentTypeStrByPaymentType = orderDao.getPaymentTypeStrByPaymentType(paymentType);
-		
-		
 		sqlSession.close();
-		
-		
-		Map<String, Object> data = new HashMap<String,Object>();
-		
-		Map<String, Object> orderInfoMap = new HashMap<String,Object>();
+
+		Map<String, Object> data = new HashMap<String, Object>();
+
+		Map<String, Object> orderInfoMap = new HashMap<String, Object>();
 		orderInfoMap.put("price", totalPrice);
 		orderInfoMap.put("paymentType", paymentTypeStrByPaymentType);
-		
+		orderInfoMap.put("orderId", order_id);
+
 		data.put("response", "ordersumbit");
 		data.put("orderInfo", orderInfoMap);
-		
+
 		CommonUtil.renderJson(resp, data);
 	}
 }

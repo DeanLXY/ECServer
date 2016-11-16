@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO
 		orderlist(order_id,user_id,address_id,delivery_type,payment_type,invoice_type,invoice_title,invoice_content,
 		STATUS,TIME,price,flag,TYPE,product_list)
-		VALUES(UUID(),#{user_id},#{orderInfo.addressId},#{orderInfo.delivery_type}
+		VALUES(#{orderInfo.orderId},#{user_id},#{orderInfo.addressId},#{orderInfo.delivery_type}
 		,#{orderInfo.payment_type},#{orderInfo.invoice_type}
 		,#{orderInfo.invoiceTitle},#{orderInfo.invoiceContent}
 		,#{orderInfo.status},#{orderInfo.time},#{orderInfo.price},

@@ -7,6 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getSearchResultByKey" parameterType="string"
 		resultType="product">
-		SELECT id,product_id productId,name,pic,price,marketprice,commentcount,sales FROM product WHERE name LIKE #{0} ORDER BY #{1}
+		SELECT id,product_id
+		productId,name,pic,price,marketprice,commentcount,sales FROM product
+		<where>
+			name LIKE #{0}
+		</where>
+		ORDER BY #{1}
 	</select>
 </mapper>
