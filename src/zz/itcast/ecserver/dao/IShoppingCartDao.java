@@ -33,4 +33,11 @@ public interface IShoppingCartDao {
 	 * @return
 	 */
 	Product getProductFromCartByProductId(String product_id);
+	
+	
+	/**
+	 * 根据商品id 删除购物车商品
+	 * @param product_id
+	 */
+	void deleteProductFromShoppingcartByProductId(String product_id);
 }

@@ -14,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import zz.itcast.ecserver.dao.IOrderDao;
 import zz.itcast.ecserver.dao.IProductDao;
+import zz.itcast.ecserver.dao.IShoppingCartDao;
 import zz.itcast.ecserver.po.OrderInfo;
 import zz.itcast.ecserver.po.Product;
 import zz.itcast.ecserver.utils.CommonUtil;
@@ -66,6 +67,7 @@ public class OrdersumbitServlet extends BaseServlet {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		IProductDao productDao = sqlSession.getMapper(IProductDao.class);
 		IOrderDao orderDao = sqlSession.getMapper(IOrderDao.class);
+		IShoppingCartDao shoppingCartDao = sqlSession.getMapper(IShoppingCartDao.class);
 		// sku 3:3:1,3|5:2:2
 		String[] skus = skuStr.split("\\|");
 		if (skus.length == 0) {
@@ -88,6 +90,10 @@ public class OrdersumbitServlet extends BaseServlet {
 				DefaultUtils.defalutError(resp, "不存在的商品,商品id = " + product_id);
 				return;
 			}
+			
+			//删除购物车商品
+			shoppingCartDao.deleteProductFromShoppingcartByProductId(product_id);
+			
 			int productNum = DefaultUtils.checkNull(product_num, 0);
 			totalCount += productNum;
 			totalPrice += productNum * product.getPrice();

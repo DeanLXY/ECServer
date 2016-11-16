@@ -10,7 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) count,product_id productId FROM
 		shoppingcart WHERE
 		user_id =
-		#{user_id} GROUP BY product_id
+		#{user_id} and state = 1 GROUP BY
+		product_id
 	</select>
 
 	<select id="getProductFromCartByProductId" parameterType="string"
@@ -22,7 +23,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 添加购物车 -->
 	<insert id="addNewProduct2Cart">
-		INSERT INTO shoppingcart(user_id,product_id ) VALUES(#{0},#{1})
+		INSERT INTO shoppingcart(user_id,product_id )
+		VALUES(#{0},#{1})
 	</insert>
 
+
+	<update id="deleteProductFromShoppingcartByProductId"
+		parameterType="string">
+		UPDATE shoppingcart SET state = 0 WHERE
+		product_id = #{product_id}
+	</update>
 </mapper>
