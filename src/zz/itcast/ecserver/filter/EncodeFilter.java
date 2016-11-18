@@ -82,7 +82,7 @@ public class EncodeFilter implements Filter {
 					if (bEncode) {
 						for (int i = 0; i < values.length; i++) {
 							try {
-								values[i] = new String(values[i].getBytes("iso8859-1"), encoding);
+								values[i] = new String(values[i].getBytes("ISO-8859-1"), encoding);
 							} catch (UnsupportedEncodingException e) {
 								e.printStackTrace();
 								throw new RuntimeException();
